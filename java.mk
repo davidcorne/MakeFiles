@@ -12,6 +12,7 @@ class/$(EXE): source/*.java
 	@echo ""
 
 run: class/$(EXE)
+# at the moment running through make isn't working, so just echo the command.
 	@echo "RUN: java -classpath class $(EXE)"
 
 clean: FRC
