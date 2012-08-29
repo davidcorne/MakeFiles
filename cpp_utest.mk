@@ -1,5 +1,19 @@
+#==============================================================================
+#D Makes many executable tests.
+#D Requires: $(EXECUTABLES), $(INCLUDES), $(LIBS) and $(RUN_TESTS)
+#D This also relies on a directory structure as follows:
+#D Directory structure:
+# +--utest (could be a different name)
+# +--+--source
+# +--+--+--tests (each in an individual .cpp file)
+# +--+--exe
+# +--+--+-- executable files
 #------------------------------------------------------------------------------
-# Generic options 
+
+#------------------------------------------------------------------------------
+# Generic options, can be overridden before the include line.
+#------------------------------------------------------------------------------
+
 CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -Wall -Werror $(INCLUDES)
 CC = g++
 

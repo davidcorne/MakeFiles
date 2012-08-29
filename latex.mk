@@ -1,3 +1,8 @@
+#==============================================================================
+#D Make the tex file into a pdf.
+#D Need to provide: TEX_NAME
+#------------------------------------------------------------------------------
+
 OUTPUT_NAME = $(shell echo $(TEX_NAME) | sed -e 's/_/\\ /g')
 
 # common commands
@@ -15,17 +20,26 @@ ifeq ($(OS), Cygwin)
   OPEN_PDF = @cygstart
 endif
 
+#==============================================================================
+#D Opens the created pdf
+#------------------------------------------------------------------------------
 open: $(OUTPUT_NAME).pdf
 # Remove temporary/unecessary files
 	$(REMOVE_TEMP_FILES)
 	$(OPEN_PDF) $(OUTPUT_NAME).pdf &
 
+#==============================================================================
+#D Makes the pdf
+#------------------------------------------------------------------------------
 $(OUTPUT_NAME).pdf: $(TEX_NAME).tex
 	$(MAKE_PDF)
 	@echo -e "\033[01;32;40m"
 	@echo "PDF made."
 	@echo -e "\033[01;37;40m"
 
+#==============================================================================
+#D Makes the pdf twice so that 
+#------------------------------------------------------------------------------
 refs: FRC
 # make twice so that the references/labels/contents are correct
 	$(MAKE_PDF)
@@ -42,12 +56,20 @@ refs: FRC
 	$(REMOVE_TEMP_FILES)
 	$(OPEN_PDF) $(OUTPUT_NAME).pdf &
 
+#==============================================================================
+#D Removes temporary files pdfs and python bytefiles.
+#------------------------------------------------------------------------------
 clean: FRC
 # remove the temporary files
 	$(REMOVE_TEMP_FILES)
-	@rm -f *.pdf
+	@rm -f *.pdf *.pyc
 	@echo "Removed all: pdfs, LaTex rubbish and temp files."
 
+#==============================================================================
+#D Pseudo target causes all targets that depend on FRC to be remade even in 
+#D case a file with the name of the target exists. Works unless there is a file
+#D called FRC in the directory.
+#------------------------------------------------------------------------------
 FRC:
-# fake target
+
 

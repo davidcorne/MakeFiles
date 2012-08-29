@@ -1,4 +1,7 @@
-# This relies on the directory structure being as follows:
+#==============================================================================
+#D Makes the C++ source files into a library and an executable.
+#D Requires: $(EXE), $(LIB), $(OBJECTS) and $(INCLUDES).
+#D This also relies on the directory structure being as follows:
 #D Directory structure:
 # +--Project
 # +--+--Project
@@ -14,9 +17,10 @@
 # +--+--+-- library file
 # +--+--obj
 # +--+--+-- object files
+#------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
-# Generic options, can be overridden before the include line
+# Generic options, can be overridden before the include line.
 #------------------------------------------------------------------------------
 
 CFLAGS_D = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS -Wall -Werror $(INCLUDES)
@@ -25,12 +29,11 @@ CC = g++
 
 #==============================================================================
 # Rules/Dependencies (all generic)
-#==============================================================================
+#------------------------------------------------------------------------------
 
 #==============================================================================
 #D Build a the executable 
 #D try to get debugging info out for Visual Studio -- currently doesn't work
-#
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIB).lib 
 	@mkdir -p exe

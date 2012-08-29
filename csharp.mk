@@ -1,10 +1,11 @@
 #==============================================================================
-#D needs the executable wanted provided as EXE and will recursivly build all 
-#D the .cs files into it. This requires a directory structure like this:
+#D Requires $(EXE)
+#D Will recursivly build all the .cs files into it. This requires a directory 
+#D structure like this:
 #   +--Folder
 #   +--+--exe
 #   +--+--source
-#==============================================================================
+#------------------------------------------------------------------------------
 
 CC = 
 CC_OPT = 
@@ -26,7 +27,7 @@ CC_WARN = $(CC_OPT)warnaserror $(CC_OPT)warn:4
 #==============================================================================
 #D Target depending on all .exe files made from a .cs file so that all of them 
 #D will be made.
-#==============================================================================
+#------------------------------------------------------------------------------
 exe/$(EXE).exe: source/*
 	$(CC) $(CC_OPT)out:$@ $(CC_WARN) $(CC_OPT)recurse:*.cs
 	@echo "$@ made."
