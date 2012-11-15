@@ -29,7 +29,7 @@ CC_WARN = $(CC_OPT)warnaserror $(CC_OPT)warn:4
 #D will be made.
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: source/*
-	$(CC) $(CC_OPT)out:$@ $(CC_WARN) $(CC_OPT)recurse:*.cs
+	$(CC) $(CC_OPT)out:$@ $(CC_WARN) $(CC_OPT)debug+ $(CC_OPT)recurse:*.cs
 	@echo "$@ made."
 	@echo ""
 

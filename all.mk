@@ -15,7 +15,7 @@ ifeq ($(OS), Cygwin)
 endif
 
 # common commands
-REMOVE_OBJECTS = @rm -f *.o  
+REMOVE_OBJECTS = @rm -f $(OBJECTS)
 REMOVE_TEMP_FILES = @rm -f *.stackdump *~ \#*\#
 
 #==============================================================================

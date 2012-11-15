@@ -23,12 +23,12 @@
 # Generic options, can be overridden before the include line.
 #------------------------------------------------------------------------------
 
-WARN = -Wall -Werror 
+WARN = 
 
-OP_FLAGS = -O0 -g -DDEBUG -D_DEBUG -D_WINDOWS
+OP_FLAGS = 
 
-CFLAGS = $(OP_FLAGS) $(WARN) $(INCLUDES)
-CC = g++
+CFLAGS = /EHsc -I. $(OP_FLAGS) $(WARN) $(INCLUDES)
+CC = cl
 
 #==============================================================================
 # Rules/Dependencies (all generic)
@@ -40,8 +40,7 @@ CC = g++
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIBRARY).lib 
 	@mkdir -p exe
-	$(CC) $(CFLAGS) source/application/$(EXE).cpp lib/$(LIBRARY).lib \
-        -o exe/$(EXE).exe
+	$(CC) $(CFLAGS) /Fe$@ source/application/$(EXE).cpp lib/$(LIBRARY).lib 
 	@echo ""
 
 #==============================================================================
@@ -49,7 +48,7 @@ exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIBRARY).lib
 #------------------------------------------------------------------------------
 lib/$(LIBRARY).lib: $(OBJECTS) 
 	@mkdir -p lib
-	ar ruvs $@ $(OBJECTS)
+	lib obj/* /OUT:$@
 	@echo ""
 
 #==============================================================================
@@ -57,7 +56,7 @@ lib/$(LIBRARY).lib: $(OBJECTS)
 #------------------------------------------------------------------------------
 obj/%.o : source/*/%.cpp $(LIBRARY)/%.h 
 	@mkdir -p obj
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) /Fo$@ $(CFLAGS) -c $<
 	@echo ""
 
 #==============================================================================

@@ -1,6 +1,6 @@
 #==============================================================================
 #D Makes many executable tests.
-#D Requires: $(EXECUTABLES), $(INCLUDES), $(LIBS) and $(RUN_TESTS)
+#D Requires: $(EXECUTABLES), $(INCLUDES), $(LIBRARIES) and $(RUN_TESTS)
 #D This also relies on a directory structure as follows:
 #D Directory structure:
 # +--utest (could be a different name)
@@ -27,9 +27,9 @@ END: $(EXECUTABLES)
 #==============================================================================
 #D Make all the executables
 #------------------------------------------------------------------------------
-exe/%.exe: source/%.cpp $(LIBS)
+exe/%.exe: source/%.cpp $(LIBRARIES)
 	@mkdir -p exe
-	$(CC) $(CFLAGS_D) $< $(LIBS) -o $@
+	$(CC) $(CFLAGS_D) $< $(LIBRARIES) -o $@
 	@echo ""
 
 #==============================================================================
