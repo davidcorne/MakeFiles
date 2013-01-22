@@ -23,9 +23,9 @@
 # Generic options, can be overridden before the include line.
 #------------------------------------------------------------------------------
 
-WARN = 
+WARN = /W4
 
-OP_FLAGS = 
+OP_FLAGS = /Od /Zi
 
 CFLAGS = /EHsc -I. $(OP_FLAGS) $(WARN) $(INCLUDES)
 CC = cl
@@ -40,7 +40,8 @@ CC = cl
 #------------------------------------------------------------------------------
 exe/$(EXE).exe: source/application/$(EXE).cpp lib/$(LIBRARY).lib 
 	@mkdir -p exe
-	$(CC) $(CFLAGS) /Fe$@ source/application/$(EXE).cpp lib/$(LIBRARY).lib 
+	$(CC) $(CFLAGS) /Fe$@ /Foobj/$(EXE).o source/application/$(EXE).cpp \
+        lib/$(LIBRARY).lib 
 	@echo ""
 
 #==============================================================================
